@@ -1,3 +1,5 @@
+import words from './words';  // adjust path if needed
+
 const words = [
     {
         word: "Beautiful",
