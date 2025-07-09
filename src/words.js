@@ -1,5 +1,6 @@
+const WORDS = ["banana", "guitar", "laptop", "window", "python", "school", "planet", "pencil", "jungle", "castle"];
 
-import words from './words'; // Adjust path if needed
+
 
 const words = [
     {
