@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { shuffle } from "../shuffle";
 
-import WORDS from "./words";
+import words from '../words';
 
 const MAX_STRIKES = 3;
 const MAX_PASSES = 3;
