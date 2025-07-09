@@ -1,3 +1,7 @@
+const WORDS = ["banana", "guitar", "laptop", "window", "python", "school", "planet", "pencil", "jungle", "castle"];
+
+
+
 const words = [
     {
         word: "Beautiful",
