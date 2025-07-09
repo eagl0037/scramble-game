@@ -1,4 +1,5 @@
-import words from './words';  // adjust path if needed
+
+import words from './words'; // Adjust path if needed
 
 const words = [
     {
