@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { shuffle } from "../shuffle";
-
-import words from '../words';
+import { shuffle } from "../utils/shuffle"; // Adjust path if needed
+import wordList from "../words"; // words.js must be in src/
 
 const MAX_STRIKES = 3;
 const MAX_PASSES = 3;
@@ -15,7 +14,7 @@ const getScrambled = (word) => {
 };
 
 const Game = () => {
-  const [words, setWords] = useState(() => shuffle([...WORDS]));
+  const [words, setWords] = useState(() => shuffle([...wordList]));
   const [currentWord, setCurrentWord] = useState("");
   const [scrambled, setScrambled] = useState("");
   const [guess, setGuess] = useState("");
@@ -70,8 +69,8 @@ const Game = () => {
     if (gameOver) return;
 
     if (guess.toLowerCase() === currentWord) {
-      setScore(s => s + 1);
-      setUsedWords(uw => [...uw, currentWord]);
+      setScore((s) => s + 1);
+      setUsedWords((uw) => [...uw, currentWord]);
       setMessage("✅ Correct!");
       setGuess("");
       setTimeout(() => {
@@ -79,7 +78,7 @@ const Game = () => {
         setMessage("");
       }, 500);
     } else {
-      setStrikes(s => s + 1);
+      setStrikes((s) => s + 1);
       setMessage("❌ Incorrect");
       setGuess("");
       if (strikes + 1 >= MAX_STRIKES) {
@@ -90,8 +89,8 @@ const Game = () => {
 
   const handlePass = () => {
     if (passes > 0 && !gameOver) {
-      setPasses(p => p - 1);
-      setUsedWords(uw => [...uw, currentWord]);
+      setPasses((p) => p - 1);
+      setUsedWords((uw) => [...uw, currentWord]);
       setMessage("⏭️ Passed");
       setTimeout(() => {
         loadNextWord();
@@ -102,7 +101,7 @@ const Game = () => {
 
   const restartGame = () => {
     localStorage.removeItem("scrambleGame");
-    const shuffled = shuffle([...WORDS]);
+    const shuffled = shuffle([...wordList]);
     setWords(shuffled);
     setScore(0);
     setStrikes(0);
@@ -130,7 +129,12 @@ const Game = () => {
     <div>
       <p>Scrambled Word: <strong>{scrambled}</strong></p>
       <form onSubmit={handleGuess}>
-        <input type="text" value={guess} onChange={(e) => setGuess(e.target.value)} autoFocus />
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          autoFocus
+        />
         <button type="submit">Guess</button>
       </form>
       <p>{message}</p>
